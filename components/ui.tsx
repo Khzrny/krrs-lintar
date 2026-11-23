@@ -103,10 +103,10 @@ export function CardHeader({
 
 /* ————————————————— Badge ————————————————— */
 
-type BadgeTone = "navy" | "gold" | "green" | "red" | "gray" | "amber" | "blue";
+type BadgeTone = "primary" | "gold" | "green" | "red" | "gray" | "amber" | "blue";
 
 const badgeCls: Record<BadgeTone, string> = {
-  navy: "bg-primary-100 text-primary-800 dark:bg-primary-900/70 dark:text-primary-200",
+  primary: "bg-primary-100 text-primary-800 dark:bg-primary-900/70 dark:text-primary-200",
   gold: "bg-gold-100 text-gold-800 dark:bg-gold-900/50 dark:text-gold-200",
   green: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200",
   red: "bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-200",
@@ -116,7 +116,7 @@ const badgeCls: Record<BadgeTone, string> = {
 };
 
 export function Badge({
-  tone = "navy",
+  tone = "primary",
   className,
   children,
 }: {
@@ -197,11 +197,11 @@ export function Select({
 export function ProgressBar({
   value,
   max,
-  tone = "navy",
+  tone = "primary",
 }: {
   value: number;
   max: number;
-  tone?: "navy" | "gold" | "red";
+  tone?: "primary" | "gold" | "red";
 }) {
   const pct = Math.min(100, (value / max) * 100);
   const barCls =
@@ -231,13 +231,13 @@ export function StatCard({
   value,
   sub,
   icon,
-  tone = "navy",
+  tone = "primary",
 }: {
   label: string;
   value: ReactNode;
   sub?: ReactNode;
   icon?: ReactNode;
-  tone?: "navy" | "gold" | "green";
+  tone?: "primary" | "gold" | "green";
 }) {
   const iconCls =
     tone === "gold"

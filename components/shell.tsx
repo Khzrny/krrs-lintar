@@ -167,7 +167,7 @@ export function AppShell({
           </div>
 
           <div className="hidden items-center gap-2 sm:flex">
-            <Badge tone="navy">
+            <Badge tone="primary">
               <IconCalendar className="size-3.5" /> TA 2026/2027 Ganjil
             </Badge>
             <Badge tone="gold">

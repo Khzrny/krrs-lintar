@@ -18,7 +18,7 @@ const jenjang = [
     label: "Mahasiswa S1",
     desc: "Sarjana — Teknik Informatika & program sarjana lainnya.",
     icon: <IconGraduation className="size-7" />,
-    tone: "navy",
+    tone: "primary",
   },
   {
     href: "/login",

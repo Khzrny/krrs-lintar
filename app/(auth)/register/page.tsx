@@ -212,7 +212,7 @@ export default function RegisterPage() {
       </p>
 
       <div className="mt-4 text-center">
-        <Badge tone="navy">Anggota staf mendaftar lewat admin — lihat README</Badge>
+        <Badge tone="primary">Anggota staf mendaftar lewat admin — lihat README</Badge>
       </div>
     </div>
   );

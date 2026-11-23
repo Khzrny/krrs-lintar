@@ -194,7 +194,7 @@ export function FormIsiKrrs({
             <IconBook className="size-5" /> Total SKS: {totalSks} / {MAKS_SKS}
           </p>
           <div className="flex items-center gap-2">
-            <Badge tone="navy">{wajib.length} wajib (paket)</Badge>
+            <Badge tone="primary">{wajib.length} wajib (paket)</Badge>
             <Badge tone="gold">{pilihan.filter((m) => dipilih.has(m.id)).length} pilihan</Badge>
             {adaBentrok ? (
               <Badge tone="red">
@@ -210,7 +210,7 @@ export function FormIsiKrrs({
         <ProgressBar
           value={totalSks}
           max={MAKS_SKS}
-          tone={totalSks > MAKS_SKS ? "red" : totalSks >= 20 ? "gold" : "navy"}
+          tone={totalSks > MAKS_SKS ? "red" : totalSks >= 20 ? "gold" : "primary"}
         />
       </Card>
 
@@ -272,7 +272,7 @@ export function FormIsiKrrs({
                     </td>
                     <td className="py-3 pr-3 text-center font-semibold text-foreground">{mk.sks}</td>
                     <td className="py-3 pr-3">
-                      <Badge tone={mk.jenis === "Wajib" ? "navy" : "gold"}>
+                      <Badge tone={mk.jenis === "Wajib" ? "primary" : "gold"}>
                         {mk.jenis === "Wajib" ? mk.paket ?? "Wajib" : "Pilihan"}
                       </Badge>
                     </td>

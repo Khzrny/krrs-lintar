@@ -97,7 +97,7 @@ export default async function DashboardPage() {
               <IconLock className="size-6" />
             )
           }
-          tone={status === "disetujui" ? "green" : "navy"}
+          tone={status === "disetujui" ? "green" : "primary"}
         />
         <StatCard
           label="SKS Diambil"
@@ -116,7 +116,7 @@ export default async function DashboardPage() {
         <ProgressBar
           value={krrs?.krrs.total_sks ?? 0}
           max={24}
-          tone={status === "disetujui" ? "gold" : "navy"}
+          tone={status === "disetujui" ? "gold" : "primary"}
         />
         <div className="mt-2 flex justify-between text-xs text-muted">
           <span>{krrs?.krrs.total_sks ?? 0} SKS dipilih</span>
@@ -170,7 +170,7 @@ export default async function DashboardPage() {
                         </Badge>
                       ) : null}
                     </h3>
-                    <Badge tone={berjalan ? "gray" : ip != null && ip >= 3 ? "green" : "navy"}>
+                    <Badge tone={berjalan ? "gray" : ip != null && ip >= 3 ? "green" : "primary"}>
                       {berjalan ? "IP: —" : `IP: ${ip!.toFixed(2)}`}
                     </Badge>
                   </div>

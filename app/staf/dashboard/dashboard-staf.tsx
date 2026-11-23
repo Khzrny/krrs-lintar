@@ -95,7 +95,7 @@ export function DashboardStaf({ baris }: { baris: BarisMahasiswa[] }) {
             Periksa dan setujui KRRS yang sudah dikunci mahasiswa · TA 2026/2027 Ganjil
           </p>
         </div>
-        <Badge tone="navy">
+        <Badge tone="primary">
           <IconShield className="size-3.5" /> Mode Staf
         </Badge>
       </div>
@@ -174,7 +174,7 @@ export function DashboardStaf({ baris }: { baris: BarisMahasiswa[] }) {
                       <p className="text-xs text-muted">{b.nim ?? "—"}</p>
                     </td>
                     <td className="px-3 py-3">
-                      <Badge tone="navy">{b.jenjang}</Badge>
+                      <Badge tone="primary">{b.jenjang}</Badge>
                     </td>
                     <td className="px-3 py-3 text-center font-semibold text-foreground">
                       {b.status ? `${b.totalSks}` : "—"}
