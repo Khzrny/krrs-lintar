@@ -7,14 +7,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="grid min-h-dvh lg:grid-cols-2">
       {/* Panel kiri — branding */}
-      <div className="relative hidden flex-col justify-between overflow-hidden bg-linear-to-br from-navy-900 via-navy-800 to-navy-950 p-10 text-white lg:flex">
+      <div className="relative hidden flex-col justify-between overflow-hidden bg-linear-to-br from-primary-900 via-primary-800 to-primary-950 p-10 text-white lg:flex">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-24 -right-24 size-96 rounded-full bg-gold-500/10 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-32 -left-16 size-96 rounded-full bg-navy-400/10 blur-3xl"
+          className="pointer-events-none absolute -bottom-32 -left-16 size-96 rounded-full bg-primary-400/10 blur-3xl"
         />
 
         <Link href="/" className="relative">
@@ -26,7 +26,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               <span className="block text-lg font-extrabold">
                 Lintar <span className="text-gold-400">KRRS</span>
               </span>
-              <span className="block text-[10px] font-medium tracking-[0.14em] text-navy-200 uppercase">
+              <span className="block text-[10px] font-medium tracking-[0.14em] text-primary-200 uppercase">
                 Universitas Tarumanagara
               </span>
             </span>
@@ -38,7 +38,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             Rencanakan semestermu dengan{" "}
             <span className="text-gold-400">lebih mudah</span>.
           </h1>
-          <p className="mt-3 text-sm text-navy-200">
+          <p className="mt-3 text-sm text-primary-200">
             Satu aplikasi untuk melihat histori nilai, menyusun jadwal mata
             kuliah tanpa bentrok, hingga mencetak KRRS resmi.
           </p>
@@ -56,14 +56,14 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                 </span>
                 <span>
                   <span className="block text-sm font-bold">{f.t}</span>
-                  <span className="block text-xs text-navy-200">{f.d}</span>
+                  <span className="block text-xs text-primary-200">{f.d}</span>
                 </span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="relative text-xs text-navy-300">
+        <p className="relative text-xs text-primary-300">
           Replika sistem akademik untuk tugas mata kuliah Front-End — bukan produk resmi UNTAR.
         </p>
       </div>

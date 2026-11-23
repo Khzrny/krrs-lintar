@@ -38,7 +38,7 @@ export function BrandMark({
     size === "sm" ? "text-sm" : size === "lg" ? "text-xl" : "text-base";
   return (
     <span className="flex items-center gap-2.5">
-      <span className="relative flex items-center justify-center overflow-hidden rounded-xl bg-linear-to-br from-navy-700 via-navy-800 to-navy-950 shadow-inner ring-1 ring-gold-500/40">
+      <span className="relative flex items-center justify-center overflow-hidden rounded-xl bg-linear-to-br from-primary-700 via-primary-800 to-primary-950 shadow-inner ring-1 ring-gold-500/40">
         <LogoUntar className={cn(box, "absolute inset-0")} />
         <span className={cn("pointer-events-none", box)} />
       </span>

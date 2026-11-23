@@ -86,7 +86,7 @@ export function AppShell({
                     className={cn(
                       "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-semibold transition-colors",
                       active(item.href)
-                        ? "bg-navy-800 text-white shadow-sm dark:bg-navy-700"
+                        ? "bg-primary-800 text-white shadow-sm dark:bg-primary-700"
                         : "text-muted hover:bg-(--surface-2) hover:text-foreground"
                     )}
                   >
@@ -109,7 +109,7 @@ export function AppShell({
 
       <div className="border-t border-(--border) p-3">
         <div className="flex items-center gap-2.5 rounded-lg bg-(--surface-2) px-3 py-2.5">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-navy-700 text-xs font-bold text-white">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-700 text-xs font-bold text-white">
             {user.nama.slice(0, 2).toUpperCase()}
           </span>
           <div className="min-w-0">
@@ -138,7 +138,7 @@ export function AppShell({
         <div className="fixed inset-0 z-40 lg:hidden">
           <button
             aria-label="Tutup menu"
-            className="absolute inset-0 bg-navy-950/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-primary-950/50 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           />
           <aside className="animate-fade-up absolute inset-y-0 left-0 w-72 border-r border-(--border) bg-(--surface) shadow-2xl">

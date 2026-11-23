@@ -187,7 +187,7 @@ export default function RegisterPage() {
                   "cursor-pointer rounded-lg border p-3 text-left transition-all",
                   jenjang === j.value
                     ? "border-gold-500 bg-gold-50 ring-2 ring-gold-500/40 dark:bg-gold-900/30"
-                    : "border-(--border) hover:border-navy-400 dark:hover:border-navy-500"
+                    : "border-(--border) hover:border-primary-400 dark:hover:border-primary-500"
                 )}
               >
                 <span className="flex items-center gap-1.5 text-sm font-bold text-foreground">
@@ -206,7 +206,7 @@ export default function RegisterPage() {
 
       <p className="mt-6 text-center text-sm text-muted">
         Sudah punya akun?{" "}
-        <Link href="/login" className="font-bold text-navy-600 hover:underline dark:text-gold-400">
+        <Link href="/login" className="font-bold text-primary-600 hover:underline dark:text-gold-400">
           Masuk
         </Link>
       </p>

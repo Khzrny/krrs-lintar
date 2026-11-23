@@ -38,7 +38,7 @@ const jenjang = [
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-dvh flex-col bg-linear-to-b from-navy-50 via-background to-background dark:from-navy-950/40">
+    <div className="flex min-h-dvh flex-col bg-linear-to-b from-primary-50 via-background to-background dark:from-primary-950/40">
       {/* ————— Navbar ————— */}
       <header className="sticky top-0 z-20 border-b border-(--border) bg-(--surface)/85 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -69,7 +69,7 @@ export default function LandingPage() {
           </Badge>
           <h1 className="mx-auto mt-5 max-w-3xl text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
             Kartu Rencana Studi{" "}
-            <span className="bg-linear-to-r from-navy-700 to-navy-500 bg-clip-text text-transparent dark:from-navy-300 dark:to-gold-400">
+            <span className="bg-linear-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent dark:from-primary-300 dark:to-gold-400">
               Online
             </span>
           </h1>
@@ -107,10 +107,10 @@ export default function LandingPage() {
                   ? "bg-gold-100 text-gold-700 dark:bg-gold-900/50 dark:text-gold-300"
                   : j.tone === "green"
                     ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300"
-                    : "bg-navy-100 text-navy-700 dark:bg-navy-900/70 dark:text-navy-200";
+                    : "bg-primary-100 text-primary-700 dark:bg-primary-900/70 dark:text-primary-200";
               return (
                 <Link key={j.label} href={j.href} className="group">
-                  <Card className="flex h-full flex-col items-center gap-3 p-6 text-center transition-all group-hover:-translate-y-1 group-hover:border-gold-400 group-hover:shadow-lg group-hover:shadow-navy-950/10">
+                  <Card className="flex h-full flex-col items-center gap-3 p-6 text-center transition-all group-hover:-translate-y-1 group-hover:border-gold-400 group-hover:shadow-lg group-hover:shadow-primary-950/10">
                     <span
                       className={`flex size-14 items-center justify-center rounded-2xl transition-transform group-hover:scale-110 ${iconCls}`}
                     >
@@ -118,7 +118,7 @@ export default function LandingPage() {
                     </span>
                     <p className="font-bold text-foreground">{j.label}</p>
                     <p className="text-sm text-muted">{j.desc}</p>
-                    <span className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-navy-600 group-hover:text-gold-600 dark:text-navy-300 dark:group-hover:text-gold-400">
+                    <span className="mt-auto inline-flex items-center gap-1 text-sm font-semibold text-primary-600 group-hover:text-gold-600 dark:text-primary-300 dark:group-hover:text-gold-400">
                       Klik di sini <IconArrowRight className="size-4" />
                     </span>
                   </Card>
@@ -148,7 +148,7 @@ export default function LandingPage() {
             },
           ].map((f) => (
             <Card key={f.title} className="p-5">
-              <span className="mb-3 flex size-11 items-center justify-center rounded-xl bg-navy-100 text-navy-700 dark:bg-navy-900/70 dark:text-gold-300">
+              <span className="mb-3 flex size-11 items-center justify-center rounded-xl bg-primary-100 text-primary-700 dark:bg-primary-900/70 dark:text-gold-300">
                 {f.icon}
               </span>
               <p className="font-bold text-foreground">{f.title}</p>

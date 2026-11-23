@@ -14,8 +14,8 @@ type Size = "sm" | "md" | "lg";
 
 const variantCls: Record<Variant, string> = {
   primary:
-    "bg-navy-800 text-white hover:bg-navy-700 active:bg-navy-900 shadow-sm shadow-navy-900/20",
-  gold: "bg-gold-500 text-navy-950 hover:bg-gold-400 active:bg-gold-600 shadow-sm shadow-gold-600/30",
+    "bg-primary-800 text-white hover:bg-primary-700 active:bg-primary-900 shadow-sm shadow-primary-900/20",
+  gold: "bg-gold-500 text-primary-950 hover:bg-gold-400 active:bg-gold-600 shadow-sm shadow-gold-600/30",
   outline:
     "border border-(--border) bg-transparent text-foreground hover:bg-(--surface-2)",
   ghost: "bg-transparent text-foreground hover:bg-(--surface-2)",
@@ -55,7 +55,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        "card-surface rounded-xl shadow-sm shadow-navy-950/5",
+        "card-surface rounded-xl shadow-sm shadow-primary-950/5",
         className
       )}
       {...props}
@@ -85,7 +85,7 @@ export function CardHeader({
     >
       <div className="flex items-center gap-3">
         {icon ? (
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-navy-50 text-navy-700 dark:bg-navy-900/60 dark:text-gold-300">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-700 dark:bg-primary-900/60 dark:text-gold-300">
             {icon}
           </span>
         ) : null}
@@ -106,7 +106,7 @@ export function CardHeader({
 type BadgeTone = "navy" | "gold" | "green" | "red" | "gray" | "amber" | "blue";
 
 const badgeCls: Record<BadgeTone, string> = {
-  navy: "bg-navy-100 text-navy-800 dark:bg-navy-900/70 dark:text-navy-200",
+  navy: "bg-primary-100 text-primary-800 dark:bg-primary-900/70 dark:text-primary-200",
   gold: "bg-gold-100 text-gold-800 dark:bg-gold-900/50 dark:text-gold-200",
   green: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-200",
   red: "bg-red-100 text-red-700 dark:bg-red-900/50 dark:text-red-200",
@@ -164,7 +164,7 @@ export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElem
     <input
       className={cn(
         "h-10 w-full rounded-lg border border-(--border) bg-(--surface) px-3 text-sm text-foreground",
-        "placeholder:text-muted/70 focus:border-navy-500 focus:ring-2 focus:ring-navy-500/25 focus:outline-none",
+        "placeholder:text-muted/70 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none",
         "transition disabled:cursor-not-allowed disabled:opacity-60",
         className
       )}
@@ -182,7 +182,7 @@ export function Select({
     <select
       className={cn(
         "h-10 w-full cursor-pointer rounded-lg border border-(--border) bg-(--surface) px-3 text-sm text-foreground",
-        "focus:border-navy-500 focus:ring-2 focus:ring-navy-500/25 focus:outline-none",
+        "focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none",
         className
       )}
       {...props}
@@ -209,7 +209,7 @@ export function ProgressBar({
       ? "bg-red-500"
       : tone === "gold"
         ? "bg-gold-500"
-        : "bg-navy-600 dark:bg-navy-400";
+        : "bg-primary-600 dark:bg-primary-400";
   return (
     <div
       className="h-2.5 w-full overflow-hidden rounded-full bg-(--surface-2)"
@@ -244,7 +244,7 @@ export function StatCard({
       ? "bg-gold-100 text-gold-700 dark:bg-gold-900/50 dark:text-gold-300"
       : tone === "green"
         ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300"
-        : "bg-navy-100 text-navy-700 dark:bg-navy-900/70 dark:text-navy-200";
+        : "bg-primary-100 text-primary-700 dark:bg-primary-900/70 dark:text-primary-200";
   return (
     <Card className="flex items-center gap-4 p-4">
       {icon ? (

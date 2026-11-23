@@ -69,7 +69,7 @@ export default async function CetakPage() {
       {/* ————— Dokumen ————— */}
       <div className="print-area card-surface rounded-xl bg-white p-8 text-black shadow-sm sm:p-10 dark:bg-white">
         {/* Kop */}
-        <header className="flex items-center gap-4 border-b-4 border-double border-navy-900 pb-4">
+        <header className="flex items-center gap-4 border-b-4 border-double border-primary-900 pb-4">
           <LogoUntar className="size-16 shrink-0" />
           <div className="flex-1 text-center">            <p className="text-sm font-semibold tracking-[0.08em]">UNIVERSITAS TARUMANEGARA</p>
             <p className="text-lg font-extrabold tracking-[0.08em]">
@@ -109,7 +109,7 @@ export default async function CetakPage() {
         {/* Tabel matkul */}
         <table className="mt-6 w-full border-collapse text-[11px]">
           <thead>
-            <tr className="bg-navy-50 text-left">
+            <tr className="bg-primary-50 text-left">
               <th className="border border-gray-400 px-2 py-1.5 text-center font-bold">No</th>
               <th className="border border-gray-400 px-2 py-1.5 font-bold">Kode</th>
               <th className="border border-gray-400 px-2 py-1.5 font-bold">Mata Kuliah</th>

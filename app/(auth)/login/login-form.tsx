@@ -121,7 +121,7 @@ export function LoginForm() {
 
       <p className="mt-6 text-center text-sm text-muted">
         Belum punya akun?{" "}
-        <Link href="/register" className="font-bold text-navy-600 hover:underline dark:text-gold-400">
+        <Link href="/register" className="font-bold text-primary-600 hover:underline dark:text-gold-400">
           Daftar sekarang
         </Link>
       </p>

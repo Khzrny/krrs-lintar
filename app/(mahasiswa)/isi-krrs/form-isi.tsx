@@ -242,7 +242,7 @@ export function FormIsiKrrs({
                     key={mk.id}
                     className={cn(
                       "border-b border-(--border)/60 transition-colors last:border-0",
-                      aktif && "bg-navy-50/70 dark:bg-navy-900/30",
+                      aktif && "bg-primary-50/70 dark:bg-primary-900/30",
                       konflik && aktif && "bg-red-50 dark:bg-red-950/40"
                     )}
                   >
@@ -252,11 +252,11 @@ export function FormIsiKrrs({
                         checked={aktif}
                         disabled={terkunci || mk.jenis === "Wajib"}
                         onChange={() => toggle(mk)}
-                        className="size-4 cursor-pointer accent-navy-700 disabled:cursor-not-allowed"
+                        className="size-4 cursor-pointer accent-primary-700 disabled:cursor-not-allowed"
                         aria-label={`Pilih ${mk.nama}`}
                       />
                     </td>
-                    <td className="py-3 pr-3 font-mono text-xs font-semibold text-navy-700 dark:text-navy-300">
+                    <td className="py-3 pr-3 font-mono text-xs font-semibold text-primary-700 dark:text-primary-300">
                       {mk.kode}
                     </td>
                     <td className="py-3 pr-3">
@@ -376,7 +376,7 @@ export function FormIsiKrrs({
                             konflik
                               ? "z-10 border-2 border-red-500 bg-red-500/90"
                               : s.mk.jenis === "Wajib"
-                                ? "bg-navy-600 dark:bg-navy-500"
+                                ? "bg-primary-600 dark:bg-primary-500"
                                 : "bg-gold-600 dark:bg-gold-500"
                           )}
                           style={{
@@ -401,7 +401,7 @@ export function FormIsiKrrs({
 
           <div className="mt-4 flex flex-wrap gap-4 text-xs text-muted">
             <span className="flex items-center gap-1.5">
-              <span className="size-3 rounded bg-navy-600 dark:bg-navy-500" /> Wajib (paket)
+              <span className="size-3 rounded bg-primary-600 dark:bg-primary-500" /> Wajib (paket)
             </span>
             <span className="flex items-center gap-1.5">
               <span className="size-3 rounded bg-gold-600 dark:bg-gold-500" /> Pilihan

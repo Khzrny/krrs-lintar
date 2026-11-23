@@ -2,25 +2,25 @@
 
 /* =========================================================
    LINTAR KRRS — Design System UNTAR
-   Tema: Navy (biru tua institusional) + Emas (aksen)
+   Tema: Merah crimson (utama, sesuai logo) + putih + Emas (aksen)
    Dark mode berbasis class .dark (toggle manual, tersimpan)
    ========================================================= */
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* — Navy — */
-  --color-navy-50: #f0f4fa;
-  --color-navy-100: #dce5f2;
-  --color-navy-200: #bccfe6;
-  --color-navy-300: #92aed3;
-  --color-navy-400: #618bbd;
-  --color-navy-500: #406ca3;
-  --color-navy-600: #2f5488;
-  --color-navy-700: #27446f;
-  --color-navy-800: #1f3760;
-  --color-navy-900: #16294a;
-  --color-navy-950: #0d1a31;
+  /* — Merah crimson UNTAR — */
+  --color-primary-50: #fef3f3;
+  --color-primary-100: #fbe2e2;
+  --color-primary-200: #f7c6c6;
+  --color-primary-300: #f19d9d;
+  --color-primary-400: #e96a6a;
+  --color-primary-500: #dc3d3d;
+  --color-primary-600: #c62b2b;
+  --color-primary-700: #a52222;
+  --color-primary-800: #862121;
+  --color-primary-900: #6d1f1f;
+  --color-primary-950: #3d0f0f;
 
   /* — Emas — */
   --color-gold-50: #fbf8eb;
@@ -39,21 +39,21 @@
 }
 
 :root {
-  --background: #f4f6fb;
-  --foreground: #16294a;
+  --background: #fbf7f7;
+  --foreground: #33161a;
   --surface: #ffffff;
-  --surface-2: #eef2f9;
-  --border: #dce5f2;
-  --muted: #5b6b85;
+  --surface-2: #f7ecec;
+  --border: #f0dcdc;
+  --muted: #8a6570;
 }
 
 .dark {
-  --background: #0b1526;
-  --foreground: #e6edf8;
-  --surface: #111e35;
-  --surface-2: #16294a;
-  --border: #22375c;
-  --muted: #8fa3c2;
+  --background: #190c0e;
+  --foreground: #f5e8e8;
+  --surface: #241214;
+  --surface-2: #33191c;
+  --border: #4a2326;
+  --muted: #c09a9e;
 }
 
 @theme inline {

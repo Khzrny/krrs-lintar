@@ -108,7 +108,7 @@ const FAQ = [
 
 export default function PanduanPage() {
   return (
-    <div className="min-h-dvh bg-linear-to-b from-navy-50 via-background to-background dark:from-navy-950/40">
+    <div className="min-h-dvh bg-linear-to-b from-primary-50 via-background to-background dark:from-primary-950/40">
       {/* Navbar */}
       <header className="no-print sticky top-0 z-20 border-b border-(--border) bg-(--surface)/85 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
@@ -143,7 +143,7 @@ export default function PanduanPage() {
         <section aria-label="Langkah pengisian" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {LANGKAH.map((l) => (
             <Card key={l.title} className="p-5">
-              <span className="mb-3 flex size-11 items-center justify-center rounded-xl bg-navy-100 text-navy-700 dark:bg-navy-900/70 dark:text-gold-300">
+              <span className="mb-3 flex size-11 items-center justify-center rounded-xl bg-primary-100 text-primary-700 dark:bg-primary-900/70 dark:text-gold-300">
                 {l.icon}
               </span>
               <p className="font-bold text-foreground">{l.title}</p>
@@ -182,7 +182,7 @@ export default function PanduanPage() {
                 { t: "Cetak dokumen", d: "KRRS resmi siap dicetak / PDF", icon: <IconCheckCircle className="size-4" /> },
               ].map((s, i) => (
                 <li key={s.t} className="relative">
-                  <span className="absolute top-0 -left-[35px] flex size-6 items-center justify-center rounded-full bg-navy-700 text-white ring-4 ring-(--surface)">
+                  <span className="absolute top-0 -left-[35px] flex size-6 items-center justify-center rounded-full bg-primary-700 text-white ring-4 ring-(--surface)">
                     {s.icon}
                   </span>
                   <p className="font-bold text-foreground">
@@ -223,9 +223,9 @@ export default function PanduanPage() {
 
         {/* CTA */}
         <section className="text-center">
-          <Card className="bg-linear-to-br from-navy-800 to-navy-950 p-8 text-white">
+          <Card className="bg-linear-to-br from-primary-800 to-primary-950 p-8 text-white">
             <h2 className="text-xl font-extrabold">Siap mengatur semester Anda?</h2>
-            <p className="mx-auto mt-2 max-w-md text-sm text-navy-200">
+            <p className="mx-auto mt-2 max-w-md text-sm text-primary-200">
               Semua fitur panduan di atas sudah tersedia di aplikasi. Masuk dan
               mulai menyusun rencana studi terbaik Anda.
             </p>

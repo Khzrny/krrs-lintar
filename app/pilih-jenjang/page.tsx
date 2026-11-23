@@ -44,7 +44,7 @@ export default async function PilihJenjangPage() {
                 key={p.value}
                 className={cn(
                   "group card-surface relative flex cursor-pointer flex-col gap-2 rounded-xl p-5 transition-all",
-                  "has-checked:border-gold-500 has-checked:ring-2 has-checked:ring-gold-500/40 hover:border-navy-400"
+                  "has-checked:border-gold-500 has-checked:ring-2 has-checked:ring-gold-500/40 hover:border-primary-400"
                 )}
               >
                 <input
@@ -54,7 +54,7 @@ export default async function PilihJenjangPage() {
                   defaultChecked={aktif}
                   className="absolute top-4 right-4 size-4 accent-gold-600"
                 />
-                <span className="flex size-11 items-center justify-center rounded-xl bg-navy-100 text-navy-700 dark:bg-navy-900/70 dark:text-gold-300">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-primary-100 text-primary-700 dark:bg-primary-900/70 dark:text-gold-300">
                   <IconGraduation className="size-6" />
                 </span>
                 <span className="font-bold text-foreground">{p.label}</span>
@@ -78,7 +78,7 @@ export default async function PilihJenjangPage() {
         <Card className="mt-8 p-4">
           <p className="text-sm text-muted">
             Selesai?{" "}
-            <Link href="/dashboard" className="font-bold text-navy-600 hover:underline dark:text-gold-400">
+            <Link href="/dashboard" className="font-bold text-primary-600 hover:underline dark:text-gold-400">
               Kembali ke dashboard
             </Link>
           </p>

@@ -153,7 +153,7 @@ export function PanelKonfirmasi({
               {daftar.map((m, i) => (
                 <tr key={m.id} className="border-b border-(--border)/60 last:border-0">
                   <td className="py-2.5 pr-3 text-muted">{i + 1}</td>
-                  <td className="py-2.5 pr-3 font-mono text-xs font-semibold text-navy-700 dark:text-navy-300">
+                  <td className="py-2.5 pr-3 font-mono text-xs font-semibold text-primary-700 dark:text-primary-300">
                     {m.kode}
                   </td>
                   <td className="py-2.5 pr-3 font-medium text-foreground">

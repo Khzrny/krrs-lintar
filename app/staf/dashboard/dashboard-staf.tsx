@@ -125,7 +125,7 @@ export function DashboardStaf({ baris }: { baris: BarisMahasiswa[] }) {
               className={cn(
                 "cursor-pointer rounded-full px-3 py-1.5 text-xs font-bold transition-colors",
                 filter === f.key
-                  ? "bg-navy-800 text-white dark:bg-navy-600"
+                  ? "bg-primary-800 text-white dark:bg-primary-600"
                   : "bg-(--surface-2) text-muted hover:text-foreground"
               )}
             >
@@ -214,7 +214,7 @@ export function DashboardStaf({ baris }: { baris: BarisMahasiswa[] }) {
         <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
           <button
             aria-label="Tutup"
-            className="absolute inset-0 bg-navy-950/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-primary-950/60 backdrop-blur-sm"
             onClick={() => setDetail(null)}
           />
           <div className="animate-pop-in relative max-h-[88dvh] w-full max-w-2xl overflow-y-auto rounded-t-2xl border border-(--border) bg-(--surface) p-6 shadow-2xl sm:rounded-2xl">
@@ -243,7 +243,7 @@ export function DashboardStaf({ baris }: { baris: BarisMahasiswa[] }) {
                 <tbody>
                   {detail.daftar.map((m) => (
                     <tr key={m.id} className="border-b border-(--border)/60 last:border-0">
-                      <td className="py-2 pr-3 font-mono text-xs font-semibold text-navy-700 dark:text-navy-300">
+                      <td className="py-2 pr-3 font-mono text-xs font-semibold text-primary-700 dark:text-primary-300">
                         {m.kode}
                       </td>
                       <td className="py-2 pr-3 font-medium text-foreground">{m.nama}</td>
@@ -270,7 +270,7 @@ export function DashboardStaf({ baris }: { baris: BarisMahasiswa[] }) {
                     value={catatan}
                     onChange={(e) => setCatatan(e.target.value)}
                     placeholder="cth: Total SKS melebihi batas untuk mahasiswa dengan IP di bawah 2.50…"
-                    className="w-full rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-foreground focus:border-navy-500 focus:ring-2 focus:ring-navy-500/25 focus:outline-none"
+                    className="w-full rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-foreground focus:border-primary-500 focus:ring-2 focus:ring-primary-500/25 focus:outline-none"
                   />
                 </div>
                 <div className="flex flex-wrap gap-2">
