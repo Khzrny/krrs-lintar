@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getUserDanProfile, getKrrs, getMataKuliahByIds, TA_AKTIF } from "@/lib/data";
 import { formatJam, formatTanggal } from "@/lib/utils";
-import { statusBadge } from "@/components/shell";
+import { statusBadge } from "@/lib/status";
 import { LogoUntar } from "@/components/logo";
 import { TombolCetak } from "./tombol-cetak";
 import { Badge, Button, EmptyState, IconBook } from "@/components/ui";

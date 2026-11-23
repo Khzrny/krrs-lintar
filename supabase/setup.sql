@@ -211,10 +211,16 @@ drop policy if exists krrs_insert_own on public.krrs;
 create policy krrs_insert_own on public.krrs
   for insert with check (profile_id = auth.uid());
 
+-- Pemilik hanya boleh mengubah saat draft/ditolak (mengisi & kunci ulang);
+-- verifikasi (disetujui/ditolak) hanya oleh staf — lihat krrs_update_staf.
 drop policy if exists krrs_update_own on public.krrs;
 create policy krrs_update_own on public.krrs
-  for update using (profile_id = auth.uid() or public.is_staf())
-  with check (profile_id = auth.uid() or public.is_staf());
+  for update using (profile_id = auth.uid() and status in ('draft', 'ditolak'))
+  with check (profile_id = auth.uid() and status in ('draft', 'terkunci'));
+
+drop policy if exists krrs_update_staf on public.krrs;
+create policy krrs_update_staf on public.krrs
+  for update using (public.is_staf()) with check (public.is_staf());
 
 drop policy if exists krrs_delete_own on public.krrs;
 create policy krrs_delete_own on public.krrs
@@ -248,23 +254,41 @@ create policy krrs_item_delete on public.krrs_item
     )
   );
 
+-- ————— Mode demo: simulasi verifikasi staf otomatis —————
+-- Hanya pemilik KRRS, hanya saat status 'terkunci'. Dipanggil dari
+-- halaman konfirmasi (countdown 5 detik) untuk demo alur lengkap.
+create or replace function public.demo_setujui_sendiri()
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  update public.krrs
+  set status = 'disetujui', verified_at = now()
+  where profile_id = auth.uid() and status = 'terkunci';
+end $$;
+
+grant execute on function public.demo_setujui_sendiri() to authenticated;
+revoke execute on function public.demo_setujui_sendiri() from anon;
+
 -- ————————————————————— 4. SEED: Template histori nilai —————————————————————
--- (Data histori asli Lintar — semester 1 s.d. 3, Teknik Informatika)
+-- (Data histori asli Lintar — nilai dibaguskan untuk demo: IP sem 1 ≈ 3.57, sem 2 ≈ 3.47, IPK ≈ 3.52)
 insert into public.histori_nilai_template (th_akad, kode, nama, sks, nilai, bobot, urut) values
   -- Semester 1 (2025/2026 Ganjil)
-  ('20251', 'TK13021', 'Database Systems',                          4, 'B',  3.27, 1),
-  ('20251', 'TK13027', 'Algorithms',                                4, 'D',  1.55, 2),
-  ('20251', 'TK13028', 'Fundamental Programming',                   4, 'C+', 2.51, 3),
+  ('20251', 'TK13021', 'Database Systems',                          4, 'A-', 3.67, 1),
+  ('20251', 'TK13027', 'Algorithms',                                4, 'B+', 3.33, 2),
+  ('20251', 'TK13028', 'Fundamental Programming',                   4, 'A-', 3.67, 3),
   ('20251', 'TK13032', 'Technology and Ethics',                     4, 'A',  4.00, 4),
-  ('20251', 'TK13036', 'Statistics',                                2, 'C',  2.27, 5),
-  ('20251', 'TK13037', 'Calculus',                                  2, 'C',  2.00, 6),
+  ('20251', 'TK13036', 'Statistics',                                2, 'B+', 3.33, 5),
+  ('20251', 'TK13037', 'Calculus',                                  2, 'B',  3.00, 6),
   -- Semester 2 (2025/2026 Genap)
-  ('20252', 'TK13030', 'Numerical Method',                          4, 'C',  2.03, 7),
-  ('20252', 'TK13034', 'Operating Systems',                         2, 'B+', 3.58, 8),
-  ('20252', 'TK13038', 'Algebra & Discrete Mathematics',            4, 'D',  1.52, 9),
+  ('20252', 'TK13030', 'Numerical Method',                          4, 'B+', 3.33, 7),
+  ('20252', 'TK13034', 'Operating Systems',                         2, 'A',  4.00, 8),
+  ('20252', 'TK13038', 'Algebra & Discrete Mathematics',            4, 'B',  3.00, 9),
   ('20252', 'TK13039', 'Introduction to Artificial Intelligence',   2, 'A',  4.00, 10),
-  ('20252', 'TK23007', 'Data Structures',                           4, 'C',  2.10, 11),
-  ('20252', 'TK23022', 'Back-End Programming',                      4, 'C',  2.27, 12),
+  ('20252', 'TK23007', 'Data Structures',                           4, 'A-', 3.67, 11),
+  ('20252', 'TK23022', 'Back-End Programming',                      4, 'B+', 3.33, 12),
   -- Semester 3 (2026/2027 Ganjil — sedang ditempuh, belum ada nilai)
   ('20261', 'TK23019', 'Mobile Programming',                        4, null, null, 13),
   ('20261', 'TK23023', 'Front-End Programming',                     4, null, null, 14),

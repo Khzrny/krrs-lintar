@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { bukaUlangDraft, kunciKrrs } from "./actions";
 import { formatJam } from "@/lib/utils";
 import type { MataKuliahLengkap, StatusKrrs } from "@/types/database";
-import { statusBadge } from "@/components/shell";
+import { statusBadge } from "@/lib/status";
 import {
   Alert,
   Badge,
@@ -19,7 +18,9 @@ import {
   IconClock,
   IconLock,
   IconPrinter,
+  ProgressBar,
 } from "@/components/ui";
+import { bukaUlangDraft, demoSetujuiOtomatis, kunciKrrs } from "./actions";
 
 export function PanelKonfirmasi({
   daftar,
@@ -94,6 +95,11 @@ export function PanelKonfirmasi({
             </p>
           ) : null}
         </Card>
+      ) : null}
+
+      {/* ————— Mode demo: countdown verifikasi otomatis ————— */}
+      {status === "terkunci" ? (
+        <DemoVerifikasiOtomatis key={`demo-${lockedAt ?? "x"}`} router={router} />
       ) : null}
 
       {status === "disetujui" ? (
@@ -236,5 +242,60 @@ export function PanelKonfirmasi({
         </div>
       ) : null}
     </div>
+  );
+}
+
+/**
+ * Mode demo — simulasi verifikasi staf otomatis dengan countdown 5 detik.
+ * Komponen terpisah agar state hitung-mundur reset setiap status berubah
+ * (di-mount ulang via key dari parent).
+ */
+function DemoVerifikasiOtomatis({
+  router,
+}: {
+  router: ReturnType<typeof useRouter>;
+}) {
+  const [sisa, setSisa] = useState(5);
+  const terkirim = useRef(false);
+  const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    const iv = setInterval(() => {
+      setSisa((s) => s - 0.25);
+    }, 250);
+    return () => clearInterval(iv);
+  }, []);
+
+  useEffect(() => {
+    if (sisa > 0 || terkirim.current) return;
+    terkirim.current = true;
+    startTransition(async () => {
+      const res = await demoSetujuiOtomatis();
+      if (res.ok) router.refresh();
+    });
+  }, [sisa, router, startTransition]);
+
+  if (sisa <= 0) return null;
+  const tampil = Math.ceil(sisa);
+
+  return (
+    <Card className="flex items-center gap-4 p-4">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-gold-100 text-gold-700 dark:bg-gold-900/50 dark:text-gold-300">
+        <IconClock className="size-6" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-bold text-foreground">
+          Mode Demo — simulasi verifikasi staf otomatis
+        </p>
+        <p className="mt-0.5 text-xs text-muted">
+          Meniru alur nyata: staf akademik menyetujui KRRS. Dalam demo ini,
+          persetujuan terjadi otomatis dalam{" "}
+          <b className="text-foreground">{tampil} detik</b>.
+        </p>
+        <div className="mt-2">
+          <ProgressBar value={5 - sisa} max={5} tone="gold" />
+        </div>
+      </div>
+    </Card>
   );
 }

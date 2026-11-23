@@ -34,6 +34,23 @@ export async function kunciKrrs(): Promise<{ ok: boolean; pesan: string }> {
   return { ok: true, pesan: "KRRS berhasil dikunci dan diajukan ke staf akademik." };
 }
 
+/**
+ * MODE DEMO — simulasi verifikasi staf otomatis.
+ * Memanggil fungsi security-definer `demo_setujui_sendiri()` di database
+ * yang hanya mengubah KRRS milik pemanggil (terkunci → disetujui).
+ */
+export async function demoSetujuiOtomatis(): Promise<{ ok: boolean; pesan: string }> {
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("demo_setujui_sendiri");
+  if (error) return { ok: false, pesan: "Simulasi gagal: " + error.message };
+
+  revalidatePath("/konfirmasi");
+  revalidatePath("/dashboard");
+  revalidatePath("/cetak");
+  revalidatePath("/staf");
+  return { ok: true, pesan: "KRRS disetujui (simulasi verifikasi staf — mode demo)." };
+}
+
 /** Buka ulang KRRS yang ditolak staf → kembali menjadi draft. */
 export async function bukaUlangDraft(): Promise<{ ok: boolean; pesan: string }> {
   const supabase = await createClient();

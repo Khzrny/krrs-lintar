@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { setujuiKrrs, tolakKrrs } from "../actions";
 import { formatJam } from "@/lib/utils";
 import type { Jenjang, MataKuliahLengkap, StatusKrrs } from "@/types/database";
-import { statusBadge } from "@/components/shell";
+import { statusBadge } from "@/lib/status";
 import { cn } from "@/lib/utils";
 import {
   Alert,

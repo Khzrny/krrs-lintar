@@ -20,6 +20,7 @@ import {
   IconUser,
 } from "@/components/ui";
 import type { Jenjang, StatusKrrs } from "@/types/database";
+import { statusBadge } from "@/lib/status";
 import { cn } from "@/lib/utils";
 
 type MenuKey = "dashboard" | "isi" | "konfirmasi" | "cetak" | "panduan" | "jenjang";
@@ -47,13 +48,6 @@ const MENU_GROUPS: { label: string; items: { key: MenuKey; href: string; label: 
     ],
   },
 ];
-
-export const statusBadge: Record<StatusKrrs, { tone: "gray" | "amber" | "green" | "red"; label: string }> = {
-  draft: { tone: "gray", label: "Draft" },
-  terkunci: { tone: "amber", label: "Menunggu Verifikasi" },
-  disetujui: { tone: "green", label: "Disetujui" },
-  ditolak: { tone: "red", label: "Ditolak" },
-};
 
 export function AppShell({
   user,

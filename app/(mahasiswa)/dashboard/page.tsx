@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getUserDanProfile, getHistori, getKrrs, TA_AKTIF } from "@/lib/data";
 import { labelTaAkad } from "@/lib/utils";
 import { hitungIP, type HistoriNilai } from "@/types/database";
-import { statusBadge } from "@/components/shell";
+import { statusBadge } from "@/lib/status";
 import {
   Badge,
   Button,
