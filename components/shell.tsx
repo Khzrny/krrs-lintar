@@ -10,7 +10,6 @@ import {
   Button,
   IconBook,
   IconCalendar,
-  IconChart,
   IconCheckCircle,
   IconGrid,
   IconHelp,
@@ -23,7 +22,7 @@ import type { Jenjang, StatusKrrs } from "@/types/database";
 import { statusBadge } from "@/lib/status";
 import { cn } from "@/lib/utils";
 
-type MenuKey = "dashboard" | "isi" | "konfirmasi" | "cetak" | "panduan" | "jenjang";
+type MenuKey = "dashboard" | "isi" | "konfirmasi" | "cetak" | "panduan";
 
 const MENU_GROUPS: { label: string; items: { key: MenuKey; href: string; label: string; icon: React.ReactNode }[] }[] = [
   {
@@ -39,12 +38,6 @@ const MENU_GROUPS: { label: string; items: { key: MenuKey; href: string; label: 
       { key: "isi", href: "/isi-krrs", label: "Isi KRRS", icon: <IconBook className="size-[18px]" /> },
       { key: "konfirmasi", href: "/konfirmasi", label: "Konfirmasi", icon: <IconCheckCircle className="size-[18px]" /> },
       { key: "cetak", href: "/cetak", label: "Cetak KRRS", icon: <IconPrinter className="size-[18px]" /> },
-    ],
-  },
-  {
-    label: "Akun",
-    items: [
-      { key: "jenjang", href: "/pilih-jenjang", label: "Ganti Jenjang", icon: <IconChart className="size-[18px]" /> },
     ],
   },
 ];
