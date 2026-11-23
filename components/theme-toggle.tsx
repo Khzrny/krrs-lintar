@@ -1,25 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { IconMoon, IconSun } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-export function ThemeToggle({ className }: { className?: string }) {
-  const [dark, setDark] = useState<boolean | null>(null);
+/* Berlangganan perubahan class .dark pada <html> tanpa setState di effect. */
+const listeners = new Set<() => void>();
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  return () => listeners.delete(cb);
+}
+function getSnapshot() {
+  return document.documentElement.classList.contains("dark");
+}
+function getServerSnapshot() {
+  return false;
+}
+function emitChange() {
+  listeners.forEach((l) => l());
+}
 
-  useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
-  }, []);
+export function ThemeToggle({ className }: { className?: string }) {
+  const dark = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   function toggle() {
-    const next = !(dark ?? false);
-    setDark(next);
+    const next = !dark;
     document.documentElement.classList.toggle("dark", next);
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
       /* abaikan bila storage diblokir */
     }
+    emitChange();
   }
 
   return (
@@ -34,13 +46,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         className
       )}
     >
-      {dark === null ? (
-        <span className="size-5" />
-      ) : dark ? (
-        <IconSun className="size-5" />
-      ) : (
-        <IconMoon className="size-5" />
-      )}
+      {dark ? <IconSun className="size-5" /> : <IconMoon className="size-5" />}
     </button>
   );
 }
