@@ -71,7 +71,9 @@ export default function RegisterPage() {
             ? "Email sudah terdaftar — silakan masuk."
             : msg.includes("23505") || msg.includes("nim_key") || msg.includes("duplicate")
               ? "NIM sudah dipakai akun lain — satu NIM hanya boleh satu akun."
-              : msg
+              : msg.includes("saving new user") || msg.includes("Database error")
+                ? "Gagal menyimpan data — kemungkinan NIM sudah dipakai akun lain. Gunakan NIM lain atau hapus akun lama lewat admin."
+                : msg
         );
         return;
       }
