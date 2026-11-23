@@ -35,9 +35,13 @@ export function LoginForm() {
         return;
       }
       // Arahkan sesuai peran (staf → aplikasi staf)
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       const { data: profil } = await supabase
         .from("profiles")
         .select("role")
+        .eq("id", user!.id)
         .single();
       const next = params.get("next");
       if (profil?.role === "staf") router.push("/staf");
