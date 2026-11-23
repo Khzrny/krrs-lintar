@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
+/* =========================================================
+   LINTAR KRRS — Design System UNTAR
+   Tema: Navy (biru tua institusional) + Emas (aksen)
+   Dark mode berbasis class .dark (toggle manual, tersimpan)
+   ========================================================= */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* — Navy — */
+  --color-navy-50: #f0f4fa;
+  --color-navy-100: #dce5f2;
+  --color-navy-200: #bccfe6;
+  --color-navy-300: #92aed3;
+  --color-navy-400: #618bbd;
+  --color-navy-500: #406ca3;
+  --color-navy-600: #2f5488;
+  --color-navy-700: #27446f;
+  --color-navy-800: #1f3760;
+  --color-navy-900: #16294a;
+  --color-navy-950: #0d1a31;
+
+  /* — Emas — */
+  --color-gold-50: #fbf8eb;
+  --color-gold-100: #f6eecb;
+  --color-gold-200: #eeda9a;
+  --color-gold-300: #e4c464;
+  --color-gold-400: #dbb043;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a9821d;
+  --color-gold-700: #87641b;
+  --color-gold-800: #70521d;
+  --color-gold-900: #60451e;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f6fb;
+  --foreground: #16294a;
+  --surface: #ffffff;
+  --surface-2: #eef2f9;
+  --border: #dce5f2;
+  --muted: #5b6b85;
+}
+
+.dark {
+  --background: #0b1526;
+  --foreground: #e6edf8;
+  --surface: #111e35;
+  --surface-2: #16294a;
+  --border: #22375c;
+  --muted: #8fa3c2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border-soft: var(--border);
+  --color-muted: var(--muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ————— Utilitas kecil ————— */
+.card-surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+/* Scrollbar halus */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 40%, transparent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--muted) 60%, transparent);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* ————— Animasi ————— */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.45s ease both;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  70% {
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.4s ease both;
+}
+
+@keyframes check-burst {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.animate-check-burst {
+  animation: check-burst 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ————— Print (dokumen KRRS) ————— */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-area {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
 }
