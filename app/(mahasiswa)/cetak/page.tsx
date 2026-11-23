@@ -71,8 +71,7 @@ export default async function CetakPage() {
         {/* Kop */}
         <header className="flex items-center gap-4 border-b-4 border-double border-navy-900 pb-4">
           <LogoUntar className="size-16 shrink-0" />
-          <div className="flex-1 text-center">
-            <p className="text-sm font-semibold tracking-[0.08em]">UNIVERSITAS TARUMANEGARA</p>
+          <div className="flex-1 text-center">            <p className="text-sm font-semibold tracking-[0.08em]">UNIVERSITAS TARUMANEGARA</p>
             <p className="text-lg font-extrabold tracking-[0.08em]">
               FAKULTAS TEKNOLOGI INFORMASI
             </p>
@@ -165,7 +164,7 @@ export default async function CetakPage() {
             <p>Jakarta, {formatTanggal(krrs.krrs.verified_at ?? krrs.krrs.updated_at)}</p>
             <p>Dekan Fakultas Teknologi Informasi,</p>
             <div className="mt-16 border-t border-gray-500 px-10 pt-1 font-bold">
-              Prof. Dr. Ir. Thomas Gozali, M.M.
+              Prof. Lina, S.T., M.Kom., Ph.D.
             </div>
           </div>
         </div>

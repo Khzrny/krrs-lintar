@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BrandMark } from "@/components/logo";
+import { BrandMark, LogoUntar } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { IconBook, IconCalendar, IconCheckCircle, IconShield } from "@/components/ui";
 
@@ -20,13 +20,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <Link href="/" className="relative">
           <span className="flex items-center gap-3">
             <span className="flex size-11 items-center justify-center rounded-xl bg-white/10 ring-1 ring-gold-400/50">
-              <svg viewBox="0 0 48 48" className="size-7 text-gold-400" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M24 5 8 10v12c0 10 7 17.5 16 21 9-3.5 16-11 16-21V10L24 5z" />
-                <line x1="17" y1="18" x2="17" y2="32" />
-                <line x1="24" y1="18" x2="24" y2="32" />
-                <line x1="31" y1="18" x2="31" y2="32" />
-                <line x1="14" y1="34" x2="34" y2="34" />
-              </svg>
+              <LogoUntar className="size-8" />
             </span>
             <span className="leading-tight">
               <span className="block text-lg font-extrabold">
