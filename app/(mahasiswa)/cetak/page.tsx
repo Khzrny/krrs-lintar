@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getUserDanProfile, getKrrs, getMataKuliahByIds, TA_AKTIF } from "@/lib/data";
 import { formatJam, formatTanggal } from "@/lib/utils";
 import { statusBadge } from "@/lib/status";
@@ -67,7 +68,16 @@ export default async function CetakPage() {
       ) : null}
 
       {/* ————— Dokumen ————— */}
-      <div className="print-area card-surface rounded-xl bg-white p-8 text-black shadow-sm sm:p-10 dark:bg-white">
+      <div className="print-area card-surface relative isolate overflow-hidden rounded-xl bg-white p-8 text-black shadow-sm sm:p-10 dark:bg-white">
+        {/* Watermark logo resmi di tengah dokumen */}
+        <Image
+          src="/logo-untar.png"
+          alt=""
+          width={520}
+          height={496}
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-[55%] max-w-[520px] -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.055] grayscale"
+        />
         {/* Kop */}
         <header className="flex items-center gap-4 border-b-4 border-double border-primary-900 pb-4">
           <LogoUntar className="size-16 shrink-0" />

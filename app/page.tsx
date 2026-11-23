@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BrandMark } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
@@ -62,8 +63,21 @@ export default function LandingPage() {
 
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6">
         {/* ————— Hero ————— */}
-        <section className="animate-fade-up py-14 text-center sm:py-20">
-          <Badge tone="gold" className="mx-auto">
+        <section className="animate-fade-up relative isolate overflow-hidden py-14 text-center sm:py-20">
+          {/* Watermark logo UNTAR di belakang judul */}
+          <Image
+            src="/logo-untar.png"
+            alt=""
+            width={560}
+            height={534}
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.06] dark:opacity-[0.09]"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 left-1/2 -z-10 size-[480px] -translate-x-1/2 rounded-full bg-gold-400/15 blur-3xl"
+          />
+          <Badge tone="gold" className="relative mx-auto">
             <span className="inline-block size-1.5 rounded-full bg-gold-500" />
             Universitas Tarumanagara · TA 2026/2027 Ganjil
           </Badge>

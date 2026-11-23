@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BrandMark } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
@@ -126,8 +127,16 @@ export default function PanduanPage() {
 
       <main className="mx-auto w-full max-w-5xl space-y-10 px-4 py-10 sm:px-6">
         {/* Hero */}
-        <section className="animate-fade-up text-center">
-          <Badge tone="gold" className="mx-auto">
+        <section className="animate-fade-up relative isolate overflow-hidden text-center">
+          <Image
+            src="/logo-untar.png"
+            alt=""
+            width={440}
+            height={420}
+            aria-hidden
+            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.06] dark:opacity-[0.09]"
+          />
+          <Badge tone="gold" className="relative mx-auto">
             <IconHelp className="size-3.5" /> Panduan Mahasiswa
           </Badge>
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
@@ -223,8 +232,16 @@ export default function PanduanPage() {
 
         {/* CTA */}
         <section className="text-center">
-          <Card className="bg-linear-to-br from-primary-800 to-primary-950 p-8 text-white">
-            <h2 className="text-xl font-extrabold">Siap mengatur semester Anda?</h2>
+          <Card className="relative isolate overflow-hidden bg-linear-to-br from-primary-800 to-primary-950 p-8 text-white">
+            <Image
+              src="/logo-untar.png"
+              alt=""
+              width={360}
+              height={344}
+              aria-hidden
+              className="pointer-events-none absolute -right-12 -bottom-14 -z-10 select-none opacity-[0.12]"
+            />
+            <h2 className="relative text-xl font-extrabold">Siap mengatur semester Anda?</h2>
             <p className="mx-auto mt-2 max-w-md text-sm text-primary-200">
               Semua fitur panduan di atas sudah tersedia di aplikasi. Masuk dan
               mulai menyusun rencana studi terbaik Anda.

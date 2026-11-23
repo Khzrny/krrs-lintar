@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { BrandMark, LogoUntar } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { IconBook, IconCalendar, IconCheckCircle, IconShield } from "@/components/ui";
@@ -15,6 +16,24 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div
           aria-hidden
           className="pointer-events-none absolute -bottom-32 -left-16 size-96 rounded-full bg-primary-400/10 blur-3xl"
+        />
+        {/* Watermark logo UNTAR besar di sudut kanan-bawah */}
+        <Image
+          src="/logo-untar.png"
+          alt=""
+          width={520}
+          height={496}
+          aria-hidden
+          className="pointer-events-none absolute -right-20 -bottom-24 select-none opacity-[0.09]"
+        />
+        {/* Motif garis lengkung halus */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(115deg, transparent 0 34px, rgba(255,255,255,0.35) 34px 36px)",
+          }}
         />
 
         <Link href="/" className="relative">
