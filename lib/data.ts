@@ -110,6 +110,35 @@ export async function getKrrs(
   return { krrs: krrs as Krrs, item: (item ?? []) as KrrsItem[] };
 }
 
+/** Detail mata kuliah berdasarkan sekumpulan id (untuk konfirmasi & cetak). */
+export async function getMataKuliahByIds(ids: number[]): Promise<MataKuliahLengkap[]> {
+  if (!ids.length) return [];
+  const supabase = await createClient();
+  const { data: mkList } = await supabase
+    .from("mata_kuliah")
+    .select("*")
+    .in("id", ids)
+    .order("id");
+
+  const { data: jadwalList } = await supabase
+    .from("jadwal")
+    .select("*")
+    .in("mata_kuliah_id", ids)
+    .order("id");
+
+  const byMk = new Map<number, Jadwal[]>();
+  for (const j of (jadwalList ?? []) as Jadwal[]) {
+    const arr = byMk.get(j.mata_kuliah_id) ?? [];
+    arr.push(j);
+    byMk.set(j.mata_kuliah_id, arr);
+  }
+
+  return ((mkList ?? []) as MataKuliah[]).map((m) => ({
+    ...m,
+    jadwal: byMk.get(m.id) ?? [],
+  }));
+}
+
 /** Daftar seluruh mahasiswa + status KRRS-nya (untuk aplikasi staf). */
 export async function getSemuaMahasiswa() {
   const supabase = await createClient();
