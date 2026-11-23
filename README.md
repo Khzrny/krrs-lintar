@@ -25,14 +25,14 @@ penuh ke database **Supabase (PostgreSQL)**, dan dideploy ke **Vercel**.
   modal detail rincian mata kuliah, aksi setujui/tolak.
 - **Panduan mahasiswa** — langkah pengisian, aturan penting, timeline, dan FAQ
   interaktif.
-- **UI responsif + dark mode** — tema navy–emas UNTAR, sidebar adaptif mobile.
+- **UI responsif + dark mode** — tema merah–emas UNTAR (sesuai logo), sidebar adaptif mobile.
 
 ## 🧰 Teknologi
 
 | Lapisan | Pilihan |
 |---|---|
 | Framework | Next.js 16 (App Router) + React 19 |
-| Styling | Tailwind CSS v4 (tema kustom navy/emas) |
+| Styling | Tailwind CSS v4 (tema kustom merah/emas) |
 | Database & Auth | Supabase (PostgreSQL + Row Level Security) |
 | Deployment | Vercel |
 
