@@ -387,11 +387,34 @@ values (
 )
 on conflict do nothing;
 
--- Pastikan profil staf ada (trigger di atas biasanya sudah membuatnya)
+-- Baris auth.identities wajib ada agar login via API berfungsi
+insert into auth.identities (
+  id, user_id, provider_id, identity_data,
+  provider, last_sign_in_at, created_at, updated_at
+)
+select
+  gen_random_uuid(),
+  u.id,
+  u.email,
+  jsonb_build_object('sub', u.id::text, 'email', u.email, 'email_verified', true),
+  'email',
+  now(), now(), now()
+from auth.users u
+where u.email = 'staf@untar.ac.id'
+  and not exists (
+    select 1 from auth.identities i
+    where i.user_id = u.id and i.provider = 'email'
+  )
+on conflict do nothing;
+
+-- Pastikan profil staf ada & ber-role staf (trigger di atas biasanya sudah membuatnya)
 insert into public.profiles (id, email, nama, role)
 select u.id, u.email, coalesce(u.raw_user_meta_data ->> 'nama', 'Staf Akademik FTI'), 'staf'
 from auth.users u
 where u.email = 'staf@untar.ac.id'
 on conflict (id) do nothing;
+
+update public.profiles set role = 'staf'
+where id in (select id from auth.users where email = 'staf@untar.ac.id');
 
 -- Selesai 🎉

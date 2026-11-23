@@ -65,10 +65,13 @@ export default function RegisterPage() {
         },
       });
       if (error) {
+        const msg = error.message;
         setError(
-          error.message.includes("already")
+          msg.includes("already registered") || msg.includes("already")
             ? "Email sudah terdaftar — silakan masuk."
-            : error.message
+            : msg.includes("23505") || msg.includes("nim_key") || msg.includes("duplicate")
+              ? "NIM sudah dipakai akun lain — satu NIM hanya boleh satu akun."
+              : msg
         );
         return;
       }
