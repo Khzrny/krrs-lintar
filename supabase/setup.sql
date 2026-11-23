@@ -147,6 +147,18 @@ create trigger on_auth_user_created
 after insert on auth.users
 for each row execute function public.handle_new_user();
 
+-- ————————————————————— 2b. Hak akses API (GRANT) —————————————————————
+-- RLS di atas yang mengatur keamanan per baris; GRANT di bawah memastikan
+-- klien (anon/authenticated) bisa mengakses tabel melalui Data API.
+grant usage on schema public to anon, authenticated;
+grant select, insert, update, delete on all tables in schema public to anon, authenticated;
+grant usage, select on all sequences in schema public to anon, authenticated;
+
+alter default privileges in schema public
+  grant select, insert, update, delete on tables to anon, authenticated;
+alter default privileges in schema public
+  grant usage, select on sequences to anon, authenticated;
+
 -- ————————————————————— 3. Row Level Security —————————————————————
 alter table public.profiles             enable row level security;
 alter table public.mata_kuliah          enable row level security;
