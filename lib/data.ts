@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { isSupabaseConfigured } from "@/lib/supabase/client";
 import type {
   HistoriNilai,
   Jadwal,
@@ -12,8 +13,9 @@ import type {
 /** TA akademik aktif untuk pengisian KRRS. */
 export const TA_AKTIF = "20261";
 
-/** Sesi login saat ini (null bila belum login). */
+/** Sesi login saat ini (null bila belum login / DB belum dikonfigurasi). */
 export async function getUser() {
+  if (!isSupabaseConfigured()) return null;
   const supabase = await createClient();
   const {
     data: { user },
