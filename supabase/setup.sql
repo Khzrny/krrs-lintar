@@ -363,9 +363,13 @@ insert into public.mata_kuliah (kode, nama, sks, jenis, paket, kelas, dosen, jen
   ('DI73003', 'Dissertation Proposal',           3, 'Wajib',   'Paket 2', 'A', 'Tim Promotor',              'S3', '20261'),
   ('DI73004', 'Scientific Computing',            3, 'Pilihan', null,     'A', 'Dr. Ir. Diana, M.T.',       'S3', '20261'),
   ('DI73005', 'Knowledge Engineering',           3, 'Pilihan', null,     'A', 'Dr. Ir. Agus, M.Kom.',      'S3', '20261'),
+  ('DI73006', 'Doctoral Research Colloquium',  2, 'Wajib',   'Paket 2', 'A', 'Tim Promotor',          'S3', '20261'),
+  ('DI73007', 'Advanced Data Science',         3, 'Pilihan', null,      'A', 'Dosen Pengampu (TBA)',  'S3', '20261'),
   -- Profesi
   ('PR51001', 'Professional Ethics & Practice',  3, 'Wajib',   'Paket 1', 'A', 'Dr. Ir. Wawan, M.M.',       'Profesi', '20261'),
   ('PR52002', 'Advanced Software Engineering',   4, 'Wajib',   'Paket 1', 'A', 'Ir. Janson Hendryli, M.Kom.', 'Profesi', '20261'),
+  ('PR51005', 'Professional Project Management', 3, 'Wajib',   'Paket 1', 'A', 'Dosen Pengampu (TBA)', 'Profesi', '20261'),
+  ('PR53005', 'Software Quality Assurance',      3, 'Pilihan', null,      'A', 'Dosen Pengampu (TBA)', 'Profesi', '20261'),
   ('PR53003', 'Cloud Computing & DevOps',        3, 'Pilihan', null,     'A', 'Darius Andana Haris, S.Kom., M.T.I.', 'Profesi', '20261'),
   ('PR53004', 'Cybersecurity Practicum',         3, 'Pilihan', null,     'B', 'Dr. Ir. Rudi, M.Kom.',      'Profesi', '20261')
 on conflict (kode, th_akad, kelas) do update
@@ -391,8 +395,12 @@ join (values
   ('DI73003', 'Rabu',   '16:00', '18:30', 'R1201'),
   ('DI73004', 'Kamis',  '16:00', '18:30', 'Lab. 3'),
   ('DI73005', 'Jumat',  '16:00', '18:30', 'R1202'),
+  ('DI73006', 'Selasa', '18:30', '20:30', 'R1202'),
+  ('DI73007', 'Senin',  '18:30', '21:00', 'R1202'),
   ('PR51001', 'Senin',  '19:00', '21:30', 'R1301'),
   ('PR52002', 'Selasa', '19:00', '21:30', 'Lab. 5'),
+  ('PR51005', 'Kamis',  '16:00', '18:30', 'R1301'),
+  ('PR53005', 'Jumat',  '19:00', '21:30', 'Lab. 6'),
   ('PR53003', 'Rabu',   '19:00', '21:30', 'Lab. 5'),
   ('PR53004', 'Kamis',  '19:00', '21:30', 'Lab. 6')
 ) as j(kode, hari, mulai, selesai, ruang)
