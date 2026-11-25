@@ -21,12 +21,25 @@ import {
 
 export const metadata = { title: "Dashboard" };
 
+// LANGKAH 4: nama lengkap tiap jenjang untuk kartu info
+const NAMA_JENJANG: Record<string, string> = {
+  S1: "Sarjana (S1)",
+  S2: "Magister (S2)",
+  S3: "Doktoral (S3)",
+  Profesi: "Profesi",
+};
+
 export default async function DashboardPage() {
   const { profile } = await getUserDanProfile();
   if (!profile) return null;
 
   const histori = await getHistori(profile.id);
   const krrs = await getKrrs(profile.id, TA_AKTIF);
+
+  // LANGKAH 4: batas SKS & penanda pascasarjana mengikuti jenjang
+  const jenjang = profile.jenjang ?? "S1";
+  const pascasarjana = jenjang !== "S1";
+  const maksSks = pascasarjana ? 21 : 24;
 
   // ————— Statistik —————
   const sudahNilai = histori.filter((h) => h.bobot != null);
@@ -71,6 +84,37 @@ export default async function DashboardPage() {
         </Link>
       </div>
 
+      {/* ————— LANGKAH 4: Kartu info jenjang (khusus pascasarjana) ————— */}
+      {pascasarjana ? (
+        <Card className="p-5">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 text-primary-700 dark:text-primary-300">
+                <IconGraduation className="size-6" />
+              </span>
+              <div>
+                <p className="font-bold text-foreground">
+                  Info Jenjang: {NAMA_JENJANG[jenjang] ?? jenjang}
+                </p>
+                <p className="mt-1 text-sm text-muted">
+                  Mahasiswa pascasarjana mengambil maksimal {maksSks} SKS per semester. Katalog
+                  mata kuliah dan jadwal yang tampil sudah khusus jenjang {jenjang}.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone="gold">Maks. {maksSks} SKS</Badge>
+              <Badge tone="primary">TA {labelTaAkad(TA_AKTIF)}</Badge>
+            </div>
+          </div>
+          <ul className="mt-4 space-y-1.5 text-sm text-foreground">
+            <li>• Jadwal kuliah pascasarjana umumnya sore hingga malam hari.</li>
+            <li>• Mata kuliah paket wajib otomatis tercentang saat pengisian KRRS.</li>
+            <li>• Sistem menolak penyimpanan bila total SKS melebihi {maksSks}.</li>
+          </ul>
+        </Card>
+      ) : null}
+
       {/* ————— Kartu statistik ————— */}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
@@ -101,7 +145,7 @@ export default async function DashboardPage() {
         />
         <StatCard
           label="SKS Diambil"
-          value={`${krrs?.krrs.total_sks ?? 0} / 24`}
+          value={`${krrs?.krrs.total_sks ?? 0} / ${maksSks}`}
           sub="Batas maksimal per semester"
           icon={<IconBook className="size-6" />}
         />
@@ -115,12 +159,12 @@ export default async function DashboardPage() {
         </div>
         <ProgressBar
           value={krrs?.krrs.total_sks ?? 0}
-          max={24}
+          max={maksSks}
           tone={status === "disetujui" ? "gold" : "primary"}
         />
         <div className="mt-2 flex justify-between text-xs text-muted">
           <span>{krrs?.krrs.total_sks ?? 0} SKS dipilih</span>
-          <span>Maks. 24 SKS</span>
+          <span>Maks. {maksSks} SKS</span>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href="/isi-krrs">

@@ -23,7 +23,6 @@ import {
   ProgressBar,
 } from "@/components/ui";
 
-const MAKS_SKS = 24;
 const JAM_MULAI_GRID = 7 * 60; // 07.00
 const JAM_AKHIR_GRID = 21.5 * 60; // 21.30
 const SKALA_PX_PER_MENIT = 0.72;
@@ -40,12 +39,18 @@ export function FormIsiKrrs({
   daftar,
   terpilihAwal,
   status,
+  jenjang, // LANGKAH 5: jenjang dikirim dari profil mahasiswa
 }: {
   daftar: MataKuliahLengkap[];
   terpilihAwal: number[];
   status: "draft" | "terkunci" | "disetujui" | "ditolak" | null;
+  jenjang: string; // LANGKAH 5
 }) {
   const router = useRouter();
+
+  // LANGKAH 3 + 5: batas SKS per jenjang (S1 maks 24, pascasarjana S2/S3/Profesi maks 21)
+  const maksSks = jenjang === "S1" ? 24 : 21;
+
   const [pending, startTransition] = useTransition();
   const [pesan, setPesan] = useState<{ ok: boolean; text: string } | null>(null);
   const [dipilih, setDipilih] = useState<Set<number>>(() => new Set(terpilihAwal));
@@ -113,7 +118,7 @@ export function FormIsiKrrs({
     setDipilih((prev) => {
       const next = new Set(prev);
       if (next.has(mk.id)) next.delete(mk.id);
-      else if (totalSks + mk.sks <= MAKS_SKS) next.add(mk.id);
+      else if (totalSks + mk.sks <= maksSks) next.add(mk.id); // LANGKAH 3
       return next;
     });
   }
@@ -191,7 +196,7 @@ export function FormIsiKrrs({
       <Card className="p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <p className="flex items-center gap-2 font-bold text-foreground">
-            <IconBook className="size-5" /> Total SKS: {totalSks} / {MAKS_SKS}
+            <IconBook className="size-5" /> Total SKS: {totalSks} / {maksSks}
           </p>
           <div className="flex items-center gap-2">
             <Badge tone="primary">{wajib.length} wajib (paket)</Badge>
@@ -209,8 +214,8 @@ export function FormIsiKrrs({
         </div>
         <ProgressBar
           value={totalSks}
-          max={MAKS_SKS}
-          tone={totalSks > MAKS_SKS ? "red" : totalSks >= 20 ? "gold" : "primary"}
+          max={maksSks}
+          tone={totalSks > maksSks ? "red" : totalSks >= maksSks - 4 ? "gold" : "primary"}
         />
       </Card>
 
