@@ -28,6 +28,9 @@ export async function simpanKrrs(mataKuliahIds: number[]): Promise<{ ok: boolean
     .single();
   const jenjang = profile?.jenjang ?? "S1";
 
+  // LANGKAH 3: batas SKS per jenjang (S1 maks 24, pascasarjana S2/S3/Profesi maks 21)
+  const batasSks = jenjang === "S1" ? 24 : 21;
+
   const { data: mkValid } = await supabase
     .from("mata_kuliah")
     .select("id, sks")
@@ -37,7 +40,14 @@ export async function simpanKrrs(mataKuliahIds: number[]): Promise<{ ok: boolean
 
   const daftar = mkValid ?? [];
   const totalSks = daftar.reduce((a, m) => a + (m as { sks: number }).sks, 0);
-  if (totalSks > 24) return { ok: false, pesan: "Total SKS melebihi batas 24." };
+
+  // LANGKAH 3: validasi memakai batas sesuai jenjang
+  if (totalSks > batasSks) {
+    return {
+      ok: false,
+      pesan: `Total SKS (${totalSks}) melebihi batas ${batasSks} SKS untuk jenjang ${jenjang}.`,
+    };
+  }
 
   // Pastikan baris KRRS ada (upsert → status draft)
   const { data: krrsRow, error: errKrrs } = await supabase
