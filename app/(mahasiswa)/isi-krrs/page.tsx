@@ -17,6 +17,7 @@ export default async function IsiKrrsPage() {
       daftar={daftar}
       terpilihAwal={krrs ? krrs.item.map((i) => i.mata_kuliah_id) : []}
       status={krrs?.krrs.status ?? null}
+      jenjang={profile.jenjang ?? "S1"}
     />
   );
 }

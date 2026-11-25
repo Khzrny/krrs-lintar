@@ -39,15 +39,16 @@ export function FormIsiKrrs({
   daftar,
   terpilihAwal,
   status,
+  jenjang, // LANGKAH 5: jenjang dikirim dari profil mahasiswa
 }: {
   daftar: MataKuliahLengkap[];
   terpilihAwal: number[];
   status: "draft" | "terkunci" | "disetujui" | "ditolak" | null;
+  jenjang: string; // LANGKAH 5
 }) {
   const router = useRouter();
 
-  // LANGKAH 3: batas SKS per jenjang (S1 maks 24, pascasarjana S2/S3/Profesi maks 21)
-  const jenjang = daftar[0]?.jenjang ?? "S1";
+  // LANGKAH 3 + 5: batas SKS per jenjang (S1 maks 24, pascasarjana S2/S3/Profesi maks 21)
   const maksSks = jenjang === "S1" ? 24 : 21;
 
   const [pending, startTransition] = useTransition();
